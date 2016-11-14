@@ -99,21 +99,22 @@
     <div id="todo-form">
         <div>
             <form>
+                <div style="text-align:center;">
                 <div class="form-group ">
 
                     <label>Choose a date : </label>
                     <input  type="date" class="input-lg text-center" placeholder="Date" ng-model="formData.date">
 
 
-                    <label >Specify a time</label>
+                    <label >Specify a time: </label>
                     <input type="text" class=" input-lg text-center" placeholder="Time" ng-model="formData.time">
                 </div>
 
                 <div class="form-group">
 
-                    <label >How Many People?</label>
+                    <label >How Many People? </label>
                     <input type="number" class=" input-lg text-center" placeholder="how many people" ng-model="formData.size">
-                    <label >Phone Number</label>
+                    <label >Phone Number: </label>
                     <input type="text" class=" input-lg text-center" placeholder="contact number" ng-model="formData.phone">
                     <label >Name: </label>
                     <input type="text" class=" input-lg text-center" placeholder="contact name" ng-model="formData.name">
@@ -121,7 +122,9 @@
                 </div>
 
                 <!-- createToDo() WILL CREATE NEW TODOS -->
-                <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+
+                <button type="submit" class="btn btn-primary btn-lg"  ng-click="createTodo()">Add</button>
+                </div>
             </form>
         </div>
     </div>
