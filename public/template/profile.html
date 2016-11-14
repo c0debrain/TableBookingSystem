@@ -1,0 +1,153 @@
+<!doctype html>
+<html ng-app="scotchTodo">
+<head>
+    <title>Node Authentication</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+
+    <title>Node/Angular Todo App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>&lt;!&ndash; load ngRoute &ndash;&gt;-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="..//core/main.js"></script>
+    <style>
+        body {
+            padding-top:80px;
+            word-wrap: break-word;
+        }
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
+</head>
+<body ng-controller="mainController">
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Manager Panel <span class="label label-info">{{ todos.length }}</span></h1><br>
+
+
+        <div id="searchBoxes">
+
+            <label>Global Search Filter: </label><input type="text" ng-model="globalSearch.$"> <button class="btn btn-primary" ng-click="advancedSearch()">Advanced Search</button><br>
+            <div ng-show="advancedFlag">
+            <label>Date Search Filter: </label><input type="text" ng-model="globalSearch.date"> <br>
+           <label>Time Search Filter: </label><input type="text" ng-model="globalSearch.time"> <br>
+            <label>Table Search Filter:</label> <input type="text" ng-model="globalSearch.table"> <br>
+            <label>Phone Search Filter:</label> <input type="text" ng-model="globalSearch.phone"> <br>
+            <label>Name Search Filter: </label><input type="text" ng-model="globalSearch.name"> <br>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div id="todo-list" class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+
+        <!-- LOOP OVER THE TODOS IN $scope.todos -->
+        <div class="checkbox" ng-repeat="todo in todos| filter:globalSearch">
+            <table class="table table-stripped">
+                <tr>
+                    <td>Date</td>
+                    <td>Time</td>
+                    <td>Size</td>
+                    <td>Phone number</td>
+                    <td>Contact Name</td>
+                    <td>Confirmation Code</td>
+                    <td>Table Number</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><div ng-hide="editingData[todo._id]">{{todo.date}}</div>
+                        <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.date"/> </div>
+                    </td>
+                    <td><div ng-hide="editingData[todo._id]">{{todo.time}}</div>
+                        <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.time"/> </div>
+                    </td>
+                    <td><div ng-hide="editingData[todo._id]">{{todo.size}}</div>
+                        <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.size"/> </div>
+                    </td>
+                    <td><div ng-hide="editingData[todo._id]">{{todo.phone}}</div>
+                        <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.phone"/> </div>
+                    </td>
+                    <td><div ng-hide="editingData[todo._id]">{{todo.name}}</div>
+                        <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.name"/> </div>
+                    </td>
+                    <td><div ng-hide="editingData[todo._id]">{{todo.code}}</div>
+                        <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.code"/> </div>
+                    </td>
+                    <td><div ng-hide="editingData[todo._id]">{{todo.table}}</div>
+                        <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.table"/> </div>
+                    </td>
+
+
+                    <td>
+                        <button class="btn btn-primary"  ng-show="editingData[todo._id]" ng-click="updateTodo(todo)">update</button>
+                        <button class="btn btn-primary" ng-hide="editingData[todo._id]" ng-click="modify(todo._id)">Modify</button>
+
+                    </td>
+                    <td><button class="btn btn-danger" value="delete" ng-click="deleteTodo(todo._id)">Delete</button></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

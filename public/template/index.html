@@ -1,0 +1,149 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchTodo">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+
+    <title>Node/Angular Todo App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>-->
+    <script src="../core/main.js"></script>
+
+    <!--for the modal-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body ng-controller="mainController">
+<div class="container">
+
+    <!-- HEADER AND TODO COUNT -->
+    <div class="jumbotron text-center">
+        <h1>Table Availability Status <span class="label label-info">{{ todos.length }}</span></h1>
+    </div>
+
+    <!-- TODO LIST -->
+    <div id="todo-list" class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+
+            <!-- LOOP OVER THE TODOS IN $scope.todos -->
+            <div class="checkbox" ng-repeat="todo in todos">
+                <table class="table table-stripped">
+                    <tr>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Size</td>
+                        <td>Phone number</td>
+                        <td>Contact Name</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><div ng-hide="editingData[todo._id]">{{todo.date}}</div>
+                            <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.date"/> </div>
+                        </td>
+                        <td><div ng-hide="editingData[todo._id]">{{todo.time}}</div>
+                            <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.time"/> </div>
+                        </td>
+                        <td><div ng-hide="editingData[todo._id]">{{todo.size}}</div>
+                            <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.size"/> </div>
+                        </td>
+                        <td><div ng-hide="editingData[todo._id]">{{todo.phone}}</div>
+                            <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.phone"/> </div>
+                        </td>
+                        <td><div ng-hide="editingData[todo._id]">{{todo.name}} Code: {{todo.code}} </div>
+                            <div ng-show="editingData[todo._id]"><input type="text" ng-model="todo.name"/> </div>
+                        </td>
+
+
+                        <td>
+                            <input type="text" placeholder="Confirmation Code" ng-model="confirmCode" ng-show="confirmData[todo._id]" >
+                            <button class="btn btn-primary"  ng-show="editingData[todo._id]" ng-click="updateTodo(todo)">update</button>
+                            <button class="btn btn-primary" ng-hide="editingData[todo._id]"  ng-click="validateConfirmation(todo,confirmCode)">Modify</button>
+                            <!--data-toggle="modal" data-target="#myModal"-->
+                            <!--ng-click="modify(todo._id)"-->
+
+                        </td>
+                        <td><button class="btn btn-danger" value="delete" ng-click="deleteTodo(todo._id)">Delete</button></td>
+                    </tr>
+                </table>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- FORM TO CREATE TODOS -->
+    <div id="todo-form">
+        <div>
+            <form>
+                <div class="form-group ">
+
+                    <label>Choose a date : </label>
+                    <input  type="date" class="input-lg text-center" placeholder="Date" ng-model="formData.date">
+
+
+                    <label >Specify a time</label>
+                    <input type="text" class=" input-lg text-center" placeholder="Time" ng-model="formData.time">
+                </div>
+
+                <div class="form-group">
+
+                    <label >How Many People?</label>
+                    <input type="number" class=" input-lg text-center" placeholder="how many people" ng-model="formData.size">
+                    <label >Phone Number</label>
+                    <input type="text" class=" input-lg text-center" placeholder="contact number" ng-model="formData.phone">
+                    <label >Name: </label>
+                    <input type="text" class=" input-lg text-center" placeholder="contact name" ng-model="formData.name">
+
+                </div>
+
+                <!-- createToDo() WILL CREATE NEW TODOS -->
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="well text-center">
+        <h1><span class="fa fa-lock"></span>Manger Only </h1>
+
+        <p>Login or Register with:
+
+        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login </a>
+        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Local Signup</a>
+
+        </p>
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
