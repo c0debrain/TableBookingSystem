@@ -45,7 +45,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes =====================================
 
-require('./app/passportRoute')(app,passport);
+require('./app/routes')(app,passport);
 
 // listen to certain port , Launch======================
 app.listen(port);
