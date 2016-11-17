@@ -2,7 +2,6 @@
  * Created by charles on 11/12/16.
  */
 
-
 angular.module('commonController',[])
     .controller('mainController',function($scope,$http) {
         $scope.formData={};
@@ -13,13 +12,13 @@ angular.module('commonController',[])
 
         $scope.advancedSearch=function () {
 
-            $scope.advancedFlag=$scope.advancedFlag==false?true:false;
+            $scope.advancedFlag=$scope.advancedFlag===false?true:false;
 
         };
 
         $scope.validateConfirmation=function (todo,confirmCode) {
             console.log(todo.code);
-            $scope.confirmData[todo._id]=$scope.confirmData[todo._id]==false?true:false;
+            $scope.confirmData[todo._id]=$scope.confirmData[todo._id]===false?true:false;
             // $scope.advancedFlag=$scope.advancedFlag==false?true:false;
             if (todo.code == confirmCode) {
 
@@ -36,8 +35,8 @@ angular.module('commonController',[])
                 for (var i = 0; i < $scope.todos.length; i++) {
                     $scope.editingData[$scope.todos[i]._id] = false;
                 }
-                for (var i = 0; i < $scope.todos.length; i++) {
-                    $scope.confirmData[$scope.todos[i]._id] = false;
+                for (var j = 0; j < $scope.todos.length; j++) {
+                    $scope.confirmData[$scope.todos[j]._id] = false;
                 }
                 console.log($scope.editingData);
 
@@ -59,7 +58,7 @@ angular.module('commonController',[])
                     console.log(data);
                 })
                 .error(function (error) {
-                    console.log('Error'+ error)
+                    console.log('Error'+ error);
                 });
         };
 
@@ -71,7 +70,7 @@ angular.module('commonController',[])
                     console.log(data);
                 })
                 .error(function (error) {
-                    console.log('Error'+ error)
+                    console.log('Error'+ error);
                 });
         };
 
@@ -101,9 +100,9 @@ angular.module('commonController',[])
                     console.log(data);
                 })
                 .error(function (error) {
-                    console.log('Error'+ error)
+                    console.log('Error'+ error);
 
-                })
+                });
 
         };
 

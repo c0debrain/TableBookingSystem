@@ -1,8 +1,10 @@
-1. Folk the folder to your loca
+1. Folk the folder to your local, get into the directory
 
-2. Run Nodemon Server.js
+2. run : npm install
 
-3. Go to the localhost:8080 to see the magic
+3. run: grunt
+
+4. Go to the localhost:8080 to see the magic
 
 
 Enjoy

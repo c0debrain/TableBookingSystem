@@ -154,7 +154,7 @@ module.exports = function(app, passport) {
                         res.send(err);
                     res.json(todos);
                 });
-            })
+            });
 
 
     });
